@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bjpowernode.crm.workbench.dao.CustomerDao">
+	<select id="getCustomerByCompany" resultType="Customer">
+
+        select * from tbl_customer
+        where name=#{name};
+
+    </select>
+
+    <insert id="insertCustomer">
+
+        insert into tbl_customer (
+            id,
+            owner,
+            name,
+            website,
+            phone,
+            createBy,
+            createTime,
+            contactSummary,
+            nextContactTime,
+            description,
+            address
+
+        ) values (
+
+           #{id},
+           #{owner},
+           #{name},
+           #{website},
+           #{phone},
+           #{createBy},
+           #{createTime},
+           #{contactSummary},
+           #{nextContactTime},
+           #{description},
+           #{address}
+        );
+
+    </insert>
+
+    <select id="getCustomerName" resultType="java.lang.String">
+
+        select
+        name
+         from tbl_customer
+         where name like '%' #{name} '%'
+
+    </select>
+
+    <insert id="insertCustomer2">
+
+        insert into tbl_customer (
+        id,
+        name,
+        createBy,
+        createTime,
+        nextContactTime,
+        owner
+
+        ) values (
+        #{id},
+        #{name},
+        #{createBy},
+        #{createTime},
+        #{nextContactTime},
+        #{owner}
+
+        );
+
+    </insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

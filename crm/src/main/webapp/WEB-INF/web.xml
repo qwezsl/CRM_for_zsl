@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>crm</display-name>
+    <filter>
+        <filter-name>UserFilter</filter-name>
+        <filter-class>com.bjpowernode.crm.web.Filter.UserFilter</filter-class>
+    </filter>
+  <filter-mapping>
+    <filter-name>UserFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+
+
+  <filter>
+    <filter-name>loginFilter</filter-name>
+    <filter-class>com.bjpowernode.crm.web.Filter.loginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>loginFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+
+  <listener>
+    <listener-class>com.bjpowernode.crm.web.Listener.Sys_Init_Listener</listener-class>
+  </listener>
+
+
+
+    <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>UserController</servlet-name>
+    <servlet-class>com.bjpowernode.crm.settings.web.controller.UserController</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UserController</servlet-name>
+    <url-pattern>/settings/user/save.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ActivityServlet</servlet-name>
+    <servlet-class>com.bjpowernode.crm.workbench.web.controller.ActivityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActivityServlet</servlet-name>
+    <url-pattern>/workbench/Activity/getUserList.do</url-pattern>
+    <url-pattern>/workbench/Activity/save.do</url-pattern>
+    <url-pattern>/workbench/Activity/pageList.do</url-pattern>
+    <url-pattern>/workbench/Activity/delete.do</url-pattern>
+    <url-pattern>/workbench/Activity/edit.do</url-pattern>
+    <url-pattern>/workbench/Activity/update.do</url-pattern>
+    <url-pattern>/workbench/activity/detail.do</url-pattern>
+    <url-pattern>/workbench/activity/showActivityRemarkByID.do</url-pattern>
+    <url-pattern>/workbench/activity/removeRemark.do</url-pattern>
+    <url-pattern>/workbench/activity/saveRemark.do</url-pattern>
+    <url-pattern>/workbench/activity/editRemark.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ClueServlet</servlet-name>
+    <servlet-class>com.bjpowernode.crm.workbench.web.controller.ClueServlet</servlet-class>
+  </servlet>
+
+    <servlet-mapping>
+    <servlet-name>ClueServlet</servlet-name>
+    <url-pattern>/workbench/clue/getUserList.do</url-pattern>
+    <url-pattern>/workbench/clue/save.do</url-pattern>
+    <url-pattern>/workbench/clue/detail.do</url-pattern>
+    <url-pattern>/workbench/clue/Get_Clue_and_activity.do</url-pattern>
+    <url-pattern>/workbench/clue/removeActivity.do</url-pattern>
+    <url-pattern>/workbench/clue/GetActivityByName_And_NotByClueId.do</url-pattern>
+    <url-pattern>/workbench/clue/inputRelation.do</url-pattern>
+    <url-pattern>/workbench/clue/GetActivityByName.do</url-pattern>
+    <url-pattern>/workbench/clue/convert.do</url-pattern>
+  </servlet-mapping>
+
+<!--交易控制器-->
+  <servlet>
+    <servlet-name>TranServlet</servlet-name>
+    <servlet-class>com.bjpowernode.crm.workbench.web.controller.TranServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TranServlet</servlet-name>
+    <url-pattern>/workbench/transaction/save.do</url-pattern>
+    <url-pattern>/workbench/transaction/getCustomerName.do</url-pattern>
+    <url-pattern>/workbench/transaction/insert.do</url-pattern>
+    <url-pattern>/workbench/transaction/showTran.do</url-pattern>
+    <url-pattern>/workbench/transaction/detail.do</url-pattern>
+    <url-pattern>/workbench/transaction/showTranHistory.do</url-pattern>
+    <url-pattern>/workbench/transaction/changeStage.do</url-pattern>
+    <url-pattern>/workbench/chart/TranECharts.do</url-pattern>
+  </servlet-mapping>
+
+
+</web-app>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

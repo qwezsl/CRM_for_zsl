@@ -1,0 +1,48 @@
+
+
+
+	$.ajax({
+				url:"",
+				type:"get",
+				dataType:"json",
+				data:{
+
+				},
+				success:function (date) {
+
+                    if(date.success){
+
+
+                    }else{
+
+
+                     }
+
+				}
+			})
+
+			bootstarp日历组件
+	$(".time").datetimepicker({
+    			minView: "month",
+    			language:  'zh-CN',
+    			format: 'yyyy-mm-dd',
+    			autoclose: true,
+    			todayBtn: true,
+    			pickerPosition: "bottom-left"
+    		});
+
+    		自动补全 bootstrap3-typeahead.min.js
+    		$("#文本框id").typeahead({
+            source: function (query, process) {
+            	$.post(
+            		"请求路径",  //请求路径
+            		{ "参数名称" : query },   //后台接收参数为name
+            		function (data) {
+            			//alert(data);
+            			process(data);
+            		},
+            		"json"
+            	);
+            },
+            delay: 1500
+            });

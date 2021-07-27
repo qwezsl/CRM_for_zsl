@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bjpowernode.crm.workbench.dao.TranDao">
+
+    <insert id="insertTran">
+
+        insert into tbl_tran (
+        id,
+        owner,
+        money,
+        name,
+        expectedDate,
+        customerId,
+        stage,
+        type,
+        source,
+        activityId,
+        contactsId,
+        createBy,
+        createTime,
+        description,
+        contactSummary ,
+        nextContactTime
+        ) values (
+        #{id},
+        #{owner},
+        #{money},
+        #{name},
+        #{expectedDate},
+        #{customerId},
+        #{stage},
+        #{type},
+        #{source},
+        #{activityId},
+        #{contactsId},
+        #{createBy},
+        #{createTime},
+        #{description},
+        #{contactSummary},
+        #{nextContactTime}
+        );
+
+    </insert>
+
+    <select id="showTran" resultType="Tran">
+      SELECT
+		t.id,
+    t.name,
+    c.name as customerId,     /* 真实名称当作Tran表中的customerId */
+    t.stage,
+    t.type,
+    u.name as owner,      /* 真实名称当作Tran表中的owner */
+    t.source,
+    co.fullname as contactsId    /* 真实名称当作Tran表中的contactsId */
+    from
+    tbl_tran t join tbl_customer c
+    on t.customerId=c.id
+    join tbl_user u
+    on u.id=t.owner
+    join tbl_contacts co
+    on t.contactsId=co.id
+
+    </select>
+
+
+    <select id="selectTran" resultType="Tran">
+
+        	select
+        	t.id,
+            t.name,
+            t.money,
+            t.expectedDate,
+            t.createBy,
+            t.createTime,
+            t.editBy,
+            t.editTime,
+            t.description,
+            t.contactSummary,
+            t.nextContactTime,
+            c.name as customerId,     /* 真实名称当作Tran表中的customerId */
+            t.stage,
+            t.type,
+            u.name as owner,      /* 真实名称当作Tran表中的owner */
+            t.source,
+            co.fullname as contactsId,    /* 真实名称当作Tran表中的contactsId */
+            a.name as activityId   /* 真实名称当作Tran表中的activityId */
+            from
+            tbl_tran t join tbl_customer c
+            on t.customerId=c.id
+            join tbl_user u
+            on u.id=t.owner
+            left join tbl_contacts co
+            on t.contactsId=co.id
+            left join tbl_activity a
+            on t.activityId=a.id
+        where t.id=#{id}
+
+
+    </select>
+
+    <update id="changeStage">
+
+        update tbl_tran set
+        stage=#{stage},
+        editBy=#{editBy},
+        editTime=#{editTime}
+  where id=#{id}
+    </update>
+
+    <select id="getTotal" resultType="int">
+
+        select count(*) from tbl_tran;
+
+    </select>
+
+    <select id="TranECharts" resultType="map">
+
+        select
+        count(*) as value,
+        stage as name
+        from tbl_tran
+        group by stage
+
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
